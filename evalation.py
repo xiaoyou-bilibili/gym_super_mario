@@ -10,12 +10,12 @@ model_path = ''
 if __name__ == '__main__':
     flag = False
     # 初始化我们的环境。这里需要指定一下我们的关卡和策略
-    env = wrap_environment("SuperMarioBros-1-1-v0", SIMPLE_MOVEMENT)
+    env = wrap_environment("SuperMarioBros-1-2-v0", SIMPLE_MOVEMENT)
     # 初始化我们的网络信息,包括输入信息和我们可以执行的action数
     # (4, 84, 84) 7
     net = CNNDQN(env.observation_space.shape, env.action_space.n)
     # 手动加载我们的模型
-    net.load_state_dict(torch.load("pretrained_models/SuperMarioBros-1-1-v0.dat"))
+    net.load_state_dict(torch.load("pretrained_models/SuperMarioBros-1-2-v0.dat"))
     # 初始化奖励信息以及重置我们的环境
     total_reward = 0.0
     state = env.reset()
