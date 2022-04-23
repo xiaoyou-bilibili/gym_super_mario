@@ -25,3 +25,6 @@ python train.py
 ```bash
 python evalation.py
 ```
+
+## 学习笔记
+[点击跳转](learing.md)

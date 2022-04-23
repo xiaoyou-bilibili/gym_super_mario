@@ -16,6 +16,7 @@ class Range:
         return self._start <= input_num <= self._end
 
 
+# 更新我们的Q表格
 def compute_td_loss(model, target_net, replay_buffer, gamma, device,
                     batch_size, beta):
     batch = replay_buffer.sample(batch_size, beta)
@@ -47,7 +48,7 @@ def update_epsilon(episode):
     eps_start = 1.0
     decay = 100000
     epsilon = eps_final + (eps_start - eps_final) * \
-        math.exp(-1 * ((episode + 1) / decay))
+              math.exp(-1 * ((episode + 1) / decay))
     return epsilon
 
 

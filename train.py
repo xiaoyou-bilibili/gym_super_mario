@@ -23,6 +23,7 @@ def update_graph(model, target_model, optimizer, replay_buffer, device,
         if not info.index % target_update_frequency:
             target_model.load_state_dict(model.state_dict())
         optimizer.zero_grad()
+        # 计算Q信息
         compute_td_loss(model, target_model, replay_buffer, gamma, device,
                         batch_size, beta)
         optimizer.step()
@@ -85,7 +86,7 @@ def run_episode(env, model, target_model, optimizer, replay_buffer,
             env.render()
         # 我们把我们模型的预测结果传入到模拟器中
         next_state, reward, done, stats = env.step(action)
-        # 把模拟器的输出放到缓冲区中
+        # 把我们探索到的数据放到经验回放区中
         replay_buffer.push(state, action, reward, next_state, done)
         # 获取下一步的状态并且更新得分
         state = next_state
@@ -118,7 +119,7 @@ def main():
     env = wrap_environment(environment, action_space)
     # 设置我们的设备 GPU or CPU
     device = set_device(force_cpu)
-    # 初始化我们的模型
+    # 初始化我们的模型，这里就包括了两个模型，让我拟合更加轻松
     model, target_model = initialize_models(environment, env, device,
                                             transfer)
     # 设置我们的优化器。用于保存状态和更新餐护士
@@ -142,8 +143,8 @@ force_cpu = False
 transfer = True
 # 设置学习率信息
 learning_rate = 1e-4
-# 设置缓冲区大小
-buffer_capacity = 1
+# 经验回放的大小
+buffer_capacity = 20000
 # 训练轮次
 num_episodes = 50000
 # 一次取多少条数据
@@ -154,6 +155,7 @@ render = True
 initial_learning = 10000
 # 模型的更新频率
 target_update_frequency = 1000
+# 对未来reward的衰减值
 gamma = 0.99
 
 if __name__ == '__main__':
