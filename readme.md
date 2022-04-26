@@ -4,6 +4,9 @@
 > 
 > 本项目代码全部来自 https://github.com/roclark/super-mario-bros-dqn
 
+## 视频介绍
+B站：https://www.bilibili.com/video/BV1RY4y1a76n
+
 ## 效果演示
 
 ![](.readme_images/5318f282.png)
