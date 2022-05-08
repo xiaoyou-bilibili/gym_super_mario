@@ -7,6 +7,8 @@
 ## 视频介绍
 B站：https://www.bilibili.com/video/BV1RY4y1a76n
 
+YouTube：https://youtu.be/VEuVMdB4KsM
+
 ## 效果演示
 
 ![](.readme_images/5318f282.png)
